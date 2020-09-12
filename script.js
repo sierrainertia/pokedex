@@ -8,6 +8,9 @@ pokemonTypeOption.text = "Pick a type";
 
 // API Type URL
 const typeUrl = "https://pokeapi.co/api/v2/type/";
+// store user selection of pokemonType
+let pokemonTypeValue = "";
+let pokemonTypeText = "";
 
 // add pokemonTypeOption to pokemonTypeSelect
 pokemonTypeSelect.add(pokemonTypeOption);
@@ -32,3 +35,9 @@ fetch(typeUrl).then(function (response) {
     }
   });
 });
+
+pokemonTypeSelect.addEventListener("change", function () {
+  pokemonTypeValue = this.options[this.selectedIndex].value;
+  pokemonTypeText = this.options[this.selectedIndex].text;
+});
+console.log(pokemonTypeValue);
