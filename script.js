@@ -23,21 +23,24 @@ fetch(typeUrl).then(function (response) {
     console.warn("looks like there was a problem");
     return;
   }
-  response.json().then(function (data) {
-    let option;
-    // loop through the results length and each time create an option with the value from that data
-    for (let i = 0; i < data.results.length; i++) {
-      option = document.createElement("option");
-      option.text = data.results[i].name;
-      option.value = data.results[i].name;
-      // add the option to the list
-      pokemonTypeSelect.add(option);
-    }
-  });
-});
-
-pokemonTypeSelect.addEventListener("change", function () {
-  pokemonTypeValue = this.options[this.selectedIndex].value;
-  pokemonTypeText = this.options[this.selectedIndex].text;
+  response
+    .json()
+    .then(function (data) {
+      let option;
+      // loop through the results length and each time create an option with the value from that data
+      for (let i = 0; i < data.results.length; i++) {
+        option = document.createElement("option");
+        option.text = data.results[i].name;
+        option.value = data.results[i].name;
+        // add the option to the list
+        pokemonTypeSelect.add(option);
+      }
+    })
+    .then(
+      pokemonTypeSelect.addEventListener("change", function () {
+        pokemonTypeValue = this.options[this.selectedIndex].value;
+        pokemonTypeText = this.options[this.selectedIndex].text;
+      })
+    );
 });
 console.log(pokemonTypeValue);
